@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, TextInput, View, Button } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Button,
+  Modal,
+  Image,
+} from "react-native";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -14,15 +21,29 @@ function GoalInput(props) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Your course goal"
-        style={styles.textInput}
-        onChangeText={inputHandler}
-        value={enteredGoalText}
-      />
-      <Button title="Add Goal" onPress={btnHandler} />
-    </View>
+    <Modal visible={props.visible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/goal.png")}
+        />
+        <TextInput
+          placeholder="Your course goal"
+          placeholderTextColor="#ccc"
+          style={styles.textInput}
+          onChangeText={inputHandler}
+          value={enteredGoalText}
+        />
+        <View style={styles.btnContainer}>
+          <View style={styles.btn}>
+            <Button title="Add Goal" onPress={btnHandler} color="#5e0acc" />
+          </View>
+          <View style={styles.btn}>
+            <Button title="Cancel" onPress={props.onCancel} color="#b180f0" />
+          </View>
+        </View>
+      </View>
+    </Modal>
   );
 }
 
@@ -31,18 +52,31 @@ export default GoalInput;
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
+    padding: 20,
+    backgroundColor: "#311b6b",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#ccc",
-    width: "70%",
+    color: "#ccc",
+    width: "100%",
     paddingHorizontal: 15,
     paddingVertical: 10,
-    marginRight: 10,
     borderRadius: 4,
+  },
+  btnContainer: {
+    flexDirection: "row",
+    gap: 10,
+    marginVertical: 16,
+  },
+  btn: {
+    width: "35%",
   },
 });

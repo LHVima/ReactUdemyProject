@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable, Modal } from "react-native";
 
 function GoalItem(props) {
   return (
@@ -18,7 +18,7 @@ export default GoalItem;
 
 const styles = StyleSheet.create({
   goalItem: {
-    marginVertical: 8,
+    marginVertical: 4,
     backgroundColor: "#5e0acc",
     borderRadius: 5,
   },
