@@ -1,2 +1,2 @@
-start
-npx expo start
+1. start
+2. npx expo start
